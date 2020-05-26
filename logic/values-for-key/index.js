@@ -1,7 +1,24 @@
-const isEqual = require('lodash').isEqual;
+const isEqual = require("lodash").isEqual;
 
 const valuesForKey = (pokeArray, key) => {
+  let res = [];
+  let output = pokeArray.map((el) => {
+    if (!Object.keys(el).includes(key)) {
+      return;
+    }
+    //output.push(el[key]);
+    return el[key];
+  });
+  //console.log(output);
 
+  //remove null elements
+  //res = output.filter(function (el) {
+  //   return el != null;
+  // });
+
+  //remove duplications
+  let uniq = [...new Set(output)];
+  return uniq;
 };
 
 module.exports = valuesForKey;

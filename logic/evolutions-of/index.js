@@ -1,9 +1,24 @@
-const evolutionOf = (pokeArray, name) => {
+const dataSample1 = require("../../data/samples/1.json");
 
+const evolutionOf = (pokeArray, name) => {
+  let res = [];
+  let poke = pokeArray.find((el) => el.name === name);
+  if (!poke) {
+    return null;
+  }
+  if (poke.prev_evolution) {
+    res.push(...poke.prev_evolution);
+  }
+  const current = { num: poke.num, name: name };
+  res.push(current);
+  if (poke.next_evolution) {
+    res.push(...poke.next_evolution);
+  }
+
+  return res;
 };
 
 module.exports = evolutionOf;
-
 
 /*
   return an array with all evolutions of a pokemon, including itself:
